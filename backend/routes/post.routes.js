@@ -1,23 +1,26 @@
 const express = require("express");
+const {
+  setPosts,
+  getPosts,
+  editPost,
+  deletePost,
+} = require("../controllers/post.controller");
 const router = express.Router();
 const port = 5000;
 
-// Logique d'un CRUD
-router.get("/", (req, res) => {
-  res.json({ message: "P'tit message" });
-});
+//-------- Logique d'un CRUD ---------//
 
-router.post("/", (req, res) => {
-  res.json({ message: req.body.message });
-});
+// Récupère les données
+router.get("/", getPosts);
 
-router.put("/:id", (req, res) => {
-  res.json({ messageId: req.params.id });
-});
+// Publie un post
+router.post("/", setPosts);
 
-router.delete("/:id", (req, res) => {
-  res.json({ message: "Post supprimé id : " + req.params.id });
-});
+// Edition de post
+router.put("/:id", editPost);
+
+// Suppression de post
+router.delete("/:id", deletePost);
 
 router.patch("/like-post/:id", (req, res) => {
   res.json({ message: "Post liké id : " + req.params.id });

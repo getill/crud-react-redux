@@ -4,6 +4,8 @@ const {
   getPosts,
   editPost,
   deletePost,
+  likePost,
+  dislikePost,
 } = require("../controllers/post.controller");
 const router = express.Router();
 const port = 5000;
@@ -22,12 +24,10 @@ router.put("/:id", editPost);
 // Suppression de post
 router.delete("/:id", deletePost);
 
-router.patch("/like-post/:id", (req, res) => {
-  res.json({ message: "Post liké id : " + req.params.id });
-});
+// Like un post
+router.patch("/like-post/:id", likePost);
 
-router.patch("/dislike-post/:id", (req, res) => {
-  res.json({ message: "Post disliké id : " + req.params.id });
-});
+// Retire le like d'un post
+router.patch("/dislike-post/:id", dislikePost);
 
 module.exports = router;

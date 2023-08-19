@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const NewPost = ({ userId }) => {
   const [message, setMessage] = useState("");
 
   const handleForm = (e) => {
     e.preventDefault();
-    console.log("C'est envoyé !");
+    axios.post("http://localhost:5000/post/", {
+      message,
+      author: userId,
+    });
   };
 
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NewPost from "./components/NewPost";
+import Thread from "./components/Thread";
 
 const App = () => {
   const [userId, setUserId] = useState("");
@@ -13,7 +15,8 @@ const App = () => {
           onChange={(e) => setUserId(e.target.value)}
         />
       </div>
-      {userId}
+      <NewPost userId={userId} />
+      <Thread userId={userId} />
     </div>
   );
 };
